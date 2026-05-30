@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sueleli is a privacy-first Swiss retirement app for clear pension planning without exposing your financial life.">
+    <title>Sueleli | Swiss retirement clarity</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Sueleli home">
+        <img src="./logo.svg" alt="" class="brand-mark">
+        <span>Sueleli</span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#privacy">Privacy</a>
+        <a href="#how">How it works</a>
+        <a href="#launch">Launch</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>Swiss retirement planning that keeps your numbers private.</h1>
+          <p>
+            Sueleli helps you understand AHV, pension fund, and personal retirement decisions
+            with local-first calculations and zero readable financial storage in the cloud.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#launch">Join launch updates</a>
+            <a class="button secondary" href="#privacy">See privacy model</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Sueleli privacy principles">
+          <div class="panel-row">
+            <span>Financial data</span>
+            <strong>On device</strong>
+          </div>
+          <div class="panel-row">
+            <span>Cloud backup</span>
+            <strong>Encrypted</strong>
+          </div>
+          <div class="panel-row">
+            <span>Reports</span>
+            <strong>Local only</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="privacy">
+        <div>
+          <h2>Built around privacy first.</h2>
+          <p>
+            The app is designed so sensitive pension values, OCR results, generated reports,
+            and retirement calculations stay readable only on your device.
+          </p>
+        </div>
+        <ul class="principles">
+          <li>Appwrite handles identity, signed configuration, device binding, and encrypted backup blobs.</li>
+          <li>Sentry receives scrubbed diagnostics to help fix crashes without collecting financial content.</li>
+          <li>OCR processing is isolated from the marketing website and does not persist source documents.</li>
+        </ul>
+      </section>
+
+      <section class="section split" id="how">
+        <div>
+          <h2>Clear answers without a sales funnel.</h2>
+          <p>
+            Sueleli focuses on helping Swiss users understand retirement gaps, contribution
+            choices, and timing scenarios without turning the planning flow into lead generation.
+          </p>
+        </div>
+        <div class="steps">
+          <article>
+            <span>01</span>
+            <h3>Enter or review your data</h3>
+            <p>Use manual entry or reviewed OCR output for pension facts that matter.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare scenarios</h3>
+            <p>See projections from confirmed inputs instead of hidden assumptions.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Keep control</h3>
+            <p>Export or back up encrypted data without giving the backend readable values.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="launch" id="launch">
+        <h2>Launching in Switzerland first.</h2>
+        <p>
+          The app will be free to download with full functionality. Optional support will happen
+          through a pay-what-you-want model on the website.
+        </p>
+        <a class="button primary" href="mailto:hallo@sueleli.ch">Contact Sueleli</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Sueleli</span>
+      <div>
+        <a href="mailto:hallo@sueleli.ch">Support</a>
+        <a href="#privacy">Privacy</a>
+      </div>
+    </footer>
+  </body>
+</html>
