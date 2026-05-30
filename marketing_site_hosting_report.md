@@ -52,7 +52,17 @@ Rendering: static
 Backend connection: none
 ```
 
+GitHub source repository:
+
+```txt
+https://github.com/Testosteronny/sueleli-website
+Production branch: main
+Site root directory: mockup
+```
+
 The local deployment should be treated as disposable. It is for design review and hosting workflow testing only.
+
+Git-backed Appwrite deployments are the target workflow. Local Appwrite still needs its GitHub/VCS integration configured before it can deploy automatically from this repository.
 
 Local Appwrite currently serves the site through this generated Sites domain:
 

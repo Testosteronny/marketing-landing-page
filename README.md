@@ -4,6 +4,12 @@ Static marketing site for Sueleli.
 
 This repository is intentionally separate from the mobile app and backend. The site has no runtime connection to Appwrite, OCR, Sentry, or user account data.
 
+GitHub repository:
+
+```txt
+https://github.com/Testosteronny/sueleli-website
+```
+
 ## Structure
 
 ```txt
@@ -28,3 +34,5 @@ Output directory: .
 Adapter: static
 Production branch: main
 ```
+
+Git-backed deployments require the self-hosted Appwrite GitHub/VCS integration to be configured first. Until the local Appwrite instance has a GitHub App installed, Appwrite can accept CLI/manual deployments but cannot automatically deploy from this GitHub repository.
