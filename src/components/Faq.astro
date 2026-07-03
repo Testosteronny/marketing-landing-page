@@ -1,0 +1,111 @@
+---
+import ChapterHead from "./ChapterHead.astro";
+import { getDict, type Lang } from "../i18n";
+
+// QUAESTIONES — the questions people actually ask, answered without JS
+// (native <details>, styled as engraved ledger rows).
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).faq;
+---
+
+<section id="faq" class="chapter" data-observe>
+  <div class="wrap narrow">
+    <ChapterHead latin={t.latin} translation={t.translation} headline={t.headline} />
+
+    <div class="items">
+      {
+        t.items.map((item, i) => (
+          <details data-reveal style={`--i: ${i + 2}`}>
+            <summary>
+              <span class="q">{item.q}</span>
+              <span class="marker" aria-hidden="true">+</span>
+            </summary>
+            <p class="a">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .narrow {
+    max-width: 56rem;
+  }
+
+  .items {
+    display: grid;
+  }
+
+  details {
+    border-bottom: 1px solid var(--stone);
+  }
+
+  details:first-child {
+    border-top: 1px solid var(--stone);
+  }
+
+  summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.4rem;
+    padding: 1.05rem 0.2rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .q {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--ink);
+    transition: color 0.3s var(--ease);
+  }
+
+  summary:hover .q {
+    color: var(--burgundy);
+  }
+
+  .marker {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--gold);
+    line-height: 1;
+    transition: transform 0.3s var(--ease);
+    flex-shrink: 0;
+  }
+
+  details[open] .marker {
+    transform: rotate(45deg);
+  }
+
+  details[open] .q {
+    color: var(--burgundy);
+  }
+
+  .a {
+    padding: 0 2.6rem 1.1rem 0.2rem;
+    font-size: 1.08rem;
+    color: var(--text-secondary, #544a3f);
+  }
+
+  /* desktop snap mode on short screens */
+  @media (min-width: 1024px) and (hover: hover) and (max-height: 860px) {
+    summary {
+      padding: 0.8rem 0.2rem;
+    }
+
+    .q {
+      font-size: 1.12rem;
+    }
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  lang="de"
+  path="/impressum/"
+  title="Impressum — Sueleli"
+  description="Impressum der Website sueleli.ch — Buchs Software Solutions, Gunzgen, Schweiz."
+>
+  <main class="legal">
+    <div class="wrap">
+      <a class="back caps" href="/">← sueleli.ch</a>
+
+      <h1>Impressum</h1>
+
+      <h2>Betreiber der Website und Anbieter der Sueleli-App</h2>
+      <p>
+        Buchs Software Solutions<br />
+        Unterfeldweg 23<br />
+        4617 Gunzgen, Schweiz
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: <a href="mailto:hallo@sueleli.ch">hallo@sueleli.ch</a><br />
+        Web: <a href="https://www.sueleli.ch">www.sueleli.ch</a>
+      </p>
+
+      <h2>Haftungshinweis</h2>
+      <p>
+        Die Inhalte dieser Website wurden mit Sorgfalt erstellt. Projektionen und Beispielrechnungen
+        auf dieser Website sind illustrativ und stellen keine Finanz-, Anlage- oder Rechtsberatung dar.
+        Für externe Links (z.&nbsp;B. TWINT) sind die jeweiligen Betreiber verantwortlich.
+      </p>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .legal {
+    padding: clamp(5rem, 10vh, 7rem) 0 4rem;
+  }
+
+  .legal .wrap {
+    max-width: 46rem;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 2.2rem;
+    color: var(--burgundy);
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    margin-bottom: 1rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.5rem;
+    color: var(--burgundy);
+  }
+
+  p {
+    font-size: 1.08rem;
+  }
+
+  a {
+    color: var(--burgundy);
+  }
+</style>

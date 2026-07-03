@@ -1,0 +1,123 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  lang="de"
+  path="/datenschutz/"
+  title="Datenschutzerklärung — Sueleli"
+  description="Datenschutzerklärung der Website sueleli.ch: keine Cookies, kein Tracking, minimale Datenbearbeitung nach Schweizer Datenschutzgesetz (DSG)."
+>
+  <main class="legal">
+    <div class="wrap">
+      <a class="back caps" href="/">← sueleli.ch</a>
+
+      <h1>Datenschutzerklärung</h1>
+      <p class="muted stand">Stand: 3. Juli 2026 · Diese Erklärung gilt für die Website sueleli.ch. Die Sueleli-App hat eine eigene Datenschutzerklärung in der App.</p>
+
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Buchs Software Solutions<br />
+        Unterfeldweg 23<br />
+        4617 Gunzgen, Schweiz<br />
+        <a href="mailto:hallo@sueleli.ch">hallo@sueleli.ch</a>
+      </p>
+
+      <h2>2. Grundsatz: so wenig Daten wie möglich</h2>
+      <p>
+        Diese Website ist bewusst so gebaut, dass sie möglichst keine Personendaten bearbeitet:
+        <strong>keine Cookies, kein Tracking, keine Analytics, keine Werbenetzwerke, keine Social-Media-Einbindungen.</strong>
+        Schriften, Bilder und das Produktvideo werden von unserem eigenen Server ausgeliefert; beim Besuch
+        der Website werden keine Anfragen an Drittanbieter ausgelöst.
+      </p>
+
+      <h2>3. Server-Logdateien</h2>
+      <p>
+        Beim Aufruf der Website verarbeitet der Hosting-Anbieter aus technischen Gründen automatisch
+        Verbindungsdaten (IP-Adresse, Datum und Uhrzeit, abgerufene Datei, Browsertyp). Diese Daten
+        dienen ausschliesslich dem sicheren und stabilen Betrieb der Website, werden nicht mit anderen
+        Daten zusammengeführt und nach kurzer Zeit gelöscht.
+      </p>
+
+      <h2>4. Kontaktformular</h2>
+      <p>
+        Wenn du uns über das Kontaktformular schreibst, werden deine Angaben (E-Mail-Adresse, Betreff,
+        Nachricht) zur Zustellung an unser Postfach hallo@sueleli.ch über den Formulardienst
+        FormSubmit (formsubmit.co) übermittelt. Dabei können Daten in Länder ausserhalb der Schweiz
+        (insbesondere die USA) gelangen. Wir verwenden deine Angaben ausschliesslich zur Beantwortung
+        deiner Anfrage und geben sie nicht weiter. Wenn du das nicht möchtest, kannst du uns jederzeit
+        direkt per E-Mail an <a href="mailto:hallo@sueleli.ch">hallo@sueleli.ch</a> schreiben.
+      </p>
+
+      <h2>5. Lokaler Speicher (kein Cookie)</h2>
+      <p>
+        Beim Wechsel der Sprache merkt sich dein Browser kurzzeitig die Scroll-Position der Seite
+        (sessionStorage). Das ist eine rein funktionale, lokale Speicherung ohne Personendaten; sie
+        verlässt deinen Browser nicht und wird beim Schliessen des Tabs gelöscht.
+      </p>
+
+      <h2>6. Zahlung per TWINT</h2>
+      <p>
+        Der Unterstützungs-Button führt zur Zahlungsseite von TWINT. Für die dortige Datenbearbeitung
+        gilt die Datenschutzerklärung der TWINT AG; wir erhalten keine Angaben zu deinem Zahlungsmittel.
+      </p>
+
+      <h2>7. Deine Rechte</h2>
+      <p>
+        Nach dem Schweizer Datenschutzgesetz (DSG) hast du insbesondere das Recht auf Auskunft,
+        Berichtigung und Löschung deiner Personendaten sowie das Recht, einer Bearbeitung zu
+        widersprechen. Wende dich dazu an <a href="mailto:hallo@sueleli.ch">hallo@sueleli.ch</a>.
+      </p>
+
+      <h2>8. Änderungen</h2>
+      <p>
+        Wir können diese Erklärung anpassen, wenn sich die Website ändert. Es gilt die jeweils hier
+        veröffentlichte Fassung.
+      </p>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .legal {
+    padding: clamp(5rem, 10vh, 7rem) 0 4rem;
+  }
+
+  .legal .wrap {
+    max-width: 46rem;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 2.2rem;
+    color: var(--burgundy);
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    margin-bottom: 0.6rem;
+  }
+
+  .stand {
+    font-size: 0.98rem;
+    font-style: italic;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.5rem;
+    color: var(--burgundy);
+  }
+
+  p {
+    font-size: 1.08rem;
+  }
+
+  a {
+    color: var(--burgundy);
+  }
+</style>

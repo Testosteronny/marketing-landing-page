@@ -127,6 +127,40 @@ const fr: typeof en = {
     settleLabel: "Qui doit à qui",
     settles: ["Ben → vous · CHF 180", "Lea → vous · CHF 210", "Lea → Anna · CHF 60"],
     foot: "CHF · format suisse · ⟳ = récurrent",
+    sourcesLabel: "Connexions de comptes",
+    sources: [
+      { name: "Import CSV", status: "disponible aujourd'hui" },
+      { name: "bLink open banking", status: "en préparation" },
+      { name: "Portefeuilles crypto", status: "prévu" },
+    ],
+  },
+
+  faq: {
+    latin: "Quaestiones",
+    translation: "les questions",
+    headline: "Questions, réponses claires.",
+    items: [
+      {
+        q: "Sueleli est-elle vraiment gratuite ?",
+        a: "Oui — chaque fonction, dès le premier jour. Si l'app vaut quelque chose pour vous, payez ce que vous voulez via TWINT, ici sur le site. Les contributions ne déverrouillent rien.",
+      },
+      {
+        q: "Où vivent mes données ?",
+        a: "Dans un coffre chiffré sur votre appareil. Nos serveurs ne voient que votre adresse e-mail, votre langue, vos appareils connectés et des valeurs de référence publiques.",
+      },
+      {
+        q: "Et si je perds mon téléphone ?",
+        a: "Sans appareil, pas de coffre — il n'y a délibérément aucune sauvegarde cloud. Lors d'un changement, vous transférez vos données directement d'un téléphone à l'autre par une connexion scellée par QR.",
+      },
+      {
+        q: "Puis-je connecter ma banque ?",
+        a: "Aujourd'hui : saisie manuelle et import CSV. En préparation : bLink open banking pour des soldes et transactions en temps réel. Prévu : portefeuilles crypto et d'autres fournisseurs.",
+      },
+      {
+        q: "L'app a-t-elle besoin d'internet ?",
+        a: "Seulement pour votre compte et les valeurs de référence. La saisie, les budgets, les scénarios et le scan fonctionnent entièrement hors ligne.",
+      },
+    ],
   },
 
   acta: {
@@ -251,6 +285,7 @@ const fr: typeof en = {
     note: "Construit en Suisse. Gardé sur votre appareil.",
     contact: "Contact",
     privacy: "Politique de confidentialité",
+    imprint: "Impressum",
   },
 };
 

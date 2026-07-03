@@ -1,4 +1,4 @@
----
+﻿---
 // DESCENDE — the close. The only inverted section: full-bleed burgundy,
 // sharing its screen with the contact letter and the TWINT support link.
 import { getDict, type Lang } from "../i18n";
@@ -25,16 +25,7 @@ const e = t.epistula;
         <span class="badge caps">{d.badgeAndroid}</span>
       </div>
 
-      <a
-        class="notify btn btn-primary"
-        href={`mailto:hallo@sueleli.ch?subject=${encodeURIComponent(d.notifySubject)}`}
-        data-reveal
-        style="--i: 4"
-      >
-        {d.notify}
-      </a>
-
-      <p class="caps signoff" data-reveal style="--i: 5">{d.signoff}</p>
+      <p class="caps signoff" data-reveal style="--i: 4">{d.signoff}</p>
     </div>
 
     <div class="side-col" id="contact" data-reveal style="--i: 3">
@@ -112,22 +103,12 @@ const e = t.epistula;
     border: 1px solid rgba(198, 154, 61, 0.55);
     border-radius: 6px;
     color: var(--gold-bright);
-    font-size: 0.66rem;
-  }
-
-  .notify {
-    background: var(--gold);
-    color: var(--burgundy-dark);
-    border-color: var(--gold-bright);
-  }
-
-  .notify:hover {
-    background: var(--gold-bright);
+    font-size: 0.74rem;
   }
 
   .signoff {
     color: var(--taupe);
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     margin-top: 0.4rem;
   }
 
@@ -144,7 +125,7 @@ const e = t.epistula;
 
   .form-title {
     color: var(--burgundy);
-    font-size: 0.66rem;
+    font-size: 0.74rem;
     padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--gold);
   }
@@ -155,7 +136,7 @@ const e = t.epistula;
   }
 
   .field-label {
-    font-size: 0.58rem;
+    font-size: 0.68rem;
     color: var(--burgundy);
   }
 
@@ -191,7 +172,7 @@ const e = t.epistula;
   }
 
   .form-note {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-style: italic;
     color: var(--taupe);
   }

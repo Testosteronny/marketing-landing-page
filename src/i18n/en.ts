@@ -125,6 +125,40 @@ const en = {
     settleLabel: "Who owes whom",
     settles: ["Ben → you · CHF 180", "Lea → you · CHF 210", "Lea → Anna · CHF 60"],
     foot: "CHF · Swiss formatting · ⟳ = recurring",
+    sourcesLabel: "Account connections",
+    sources: [
+      { name: "CSV import", status: "available today" },
+      { name: "bLink open banking", status: "in the works" },
+      { name: "Crypto wallets", status: "planned" },
+    ],
+  },
+
+  faq: {
+    latin: "Quaestiones",
+    translation: "questions",
+    headline: "Questions, answered plainly.",
+    items: [
+      {
+        q: "Is Sueleli really free?",
+        a: "Yes — every feature, from day one. If the app is worth something to you, pay what you want via TWINT here on the website. Contributions unlock nothing.",
+      },
+      {
+        q: "Where does my data live?",
+        a: "In an encrypted vault on your device. Our servers only ever see your e-mail address, language, connected devices, and public reference values.",
+      },
+      {
+        q: "What if I lose my phone?",
+        a: "No device, no vault — there is deliberately no cloud backup. When you switch phones, you move your data directly between devices over a QR-sealed connection.",
+      },
+      {
+        q: "Can I connect my bank?",
+        a: "Today: manual entry and CSV import. In the works: bLink open banking for realtime balances and transactions. Planned: crypto wallets and further providers.",
+      },
+      {
+        q: "Does the app need internet?",
+        a: "Only for your account and reference values. Entering, budgets, scenarios, and statement scanning work fully offline.",
+      },
+    ],
   },
 
   acta: {
@@ -249,6 +283,7 @@ const en = {
     note: "Built in Switzerland. Kept on your device.",
     contact: "Contact",
     privacy: "Privacy Policy",
+    imprint: "Impressum",
   },
 };
 

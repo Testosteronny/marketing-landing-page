@@ -3,6 +3,8 @@
 
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const $ = (id) => document.getElementById(id);
+
 /* Swiss number formatting: 12'345 */
 const chf = (n) =>
   Math.round(n)
@@ -110,6 +112,24 @@ try {
 }
 
 /* ------------------------------------------------------------------ */
+/* Hero film — pause when the viewer scrolls away                      */
+/* ------------------------------------------------------------------ */
+
+const heroVideo = $("hero-video");
+
+if (heroVideo) {
+  const videoWatch = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting && !heroVideo.paused) heroVideo.pause();
+      }
+    },
+    { threshold: 0.25 }
+  );
+  videoWatch.observe(heroVideo);
+}
+
+/* ------------------------------------------------------------------ */
 /* EPISTULA — contact form. Relayed to the hallo@sueleli.ch inbox with */
 /* the visitor's address as reply-to; status shown inline.             */
 /* ------------------------------------------------------------------ */
@@ -147,8 +167,6 @@ if (contactForm) {
     }
   });
 }
-
-const $ = (id) => document.getElementById(id);
 
 /* ------------------------------------------------------------------ */
 /* TRES COLUMNAE — retirement-goal gauge (illustrative only).          */

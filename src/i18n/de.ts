@@ -127,6 +127,40 @@ const de: typeof en = {
     settleLabel: "Wer schuldet wem",
     settles: ["Ben → Dir · CHF 180", "Lea → Dir · CHF 210", "Lea → Anna · CHF 60"],
     foot: "CHF · Schweizer Format · ⟳ = wiederkehrend",
+    sourcesLabel: "Kontoverbindungen",
+    sources: [
+      { name: "CSV-Import", status: "heute verfügbar" },
+      { name: "bLink Open Banking", status: "in Arbeit" },
+      { name: "Krypto-Wallets", status: "geplant" },
+    ],
+  },
+
+  faq: {
+    latin: "Quaestiones",
+    translation: "die Fragen",
+    headline: "Fragen, klar beantwortet.",
+    items: [
+      {
+        q: "Ist Sueleli wirklich gratis?",
+        a: "Ja — jede Funktion, ab Tag eins. Wenn dir die App etwas wert ist, zahlst du hier auf der Website per TWINT, was du willst. Beiträge schalten nichts frei.",
+      },
+      {
+        q: "Wo liegen meine Daten?",
+        a: "In einem verschlüsselten Tresor auf deinem Gerät. Unsere Server sehen nur E-Mail-Adresse, Sprache, verbundene Geräte und öffentliche Referenzwerte.",
+      },
+      {
+        q: "Was, wenn ich mein Telefon verliere?",
+        a: "Ohne Gerät kein Tresor — es gibt bewusst kein Cloud-Backup. Beim Gerätewechsel überträgst du deine Daten direkt per QR-versiegelter Verbindung von Telefon zu Telefon.",
+      },
+      {
+        q: "Kann ich meine Bank verbinden?",
+        a: "Heute: manuelle Erfassung und CSV-Import. In Arbeit: bLink Open Banking für Salden und Transaktionen in Echtzeit. Geplant: Krypto-Wallets und weitere Anbieter.",
+      },
+      {
+        q: "Braucht die App Internet?",
+        a: "Nur für dein Konto und Referenzwerte. Erfassen, Budgets, Szenarien und das Scannen von Ausweisen funktionieren komplett offline.",
+      },
+    ],
   },
 
   acta: {
@@ -251,6 +285,7 @@ const de: typeof en = {
     note: "Gebaut in der Schweiz. Bleibt auf deinem Gerät.",
     contact: "Kontakt",
     privacy: "Datenschutzerklärung",
+    imprint: "Impressum",
   },
 };
 

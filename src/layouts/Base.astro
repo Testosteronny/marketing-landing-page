@@ -12,11 +12,14 @@ interface Props {
   lang: Lang;
   title: string;
   description: string;
+  /** canonical path override for standalone pages (e.g. "/impressum/") */
+  path?: string;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, path } = Astro.props;
 const site = Astro.site ?? new URL("https://sueleli.ch");
 const urlFor = (l: Lang) => new URL(basePath(l), site).href;
+const canonical = path ? new URL(path, site).href : urlFor(lang);
 ---
 
 <!doctype html>
@@ -28,13 +31,13 @@ const urlFor = (l: Lang) => new URL(basePath(l), site).href;
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
     <link rel="preload" as="image" href="/assets/marble-canvas.webp" />
-    <link rel="canonical" href={urlFor(lang)} />
-    {locales.map((l) => <link rel="alternate" hreflang={l} href={urlFor(l)} />)}
-    <link rel="alternate" hreflang="x-default" href={urlFor("de")} />
+    <link rel="canonical" href={canonical} />
+    {!path && locales.map((l) => <link rel="alternate" hreflang={l} href={urlFor(l)} />)}
+    {!path && <link rel="alternate" hreflang="x-default" href={urlFor("de")} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={urlFor(lang)} />
+    <meta property="og:url" content={canonical} />
     <script>
       // Gate all hidden animation states on JS being present.
       document.documentElement.classList.add("js");

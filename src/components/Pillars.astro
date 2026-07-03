@@ -1,4 +1,4 @@
----
+﻿---
 import ChapterHead from "./ChapterHead.astro";
 import { getDict, type Lang } from "../i18n";
 
@@ -135,7 +135,7 @@ const [ahv, bvg, p3] = t.items;
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
     gap: clamp(1.8rem, 4vw, 3.2rem);
-    padding: clamp(1.6rem, 3vw, 2.6rem);
+    padding: 1.6rem 2.2rem;
     align-items: center;
   }
 
@@ -173,7 +173,7 @@ const [ahv, bvg, p3] = t.items;
   }
 
   .total-label {
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     color: var(--ink);
   }
 
@@ -205,16 +205,16 @@ const [ahv, bvg, p3] = t.items;
   }
 
   .pnum {
-    font-size: 0.72rem;
+    font-size: 0.8rem;
     color: var(--burgundy);
   }
 
   .sub {
-    font-size: 0.85rem;
+    font-size: 0.94rem;
   }
 
   .control {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.55rem;
   }
 
   .control-head {
@@ -223,11 +223,11 @@ const [ahv, bvg, p3] = t.items;
 
   .derived {
     margin-left: auto;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
   .goal-note {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-style: italic;
     margin-top: 0.4rem;
   }
@@ -235,7 +235,7 @@ const [ahv, bvg, p3] = t.items;
   /* couple mode, in one engraved line */
   .couple-note {
     margin-top: 1rem;
-    font-size: 0.92rem;
+    font-size: 1.02rem;
     font-style: italic;
     text-align: center;
   }
@@ -264,8 +264,8 @@ const [ahv, bvg, p3] = t.items;
     }
 
     .couple-note {
-      margin-top: 0.6rem;
-      font-size: 0.85rem;
+      margin-top: 0.3rem;
+      font-size: 0.9rem;
     }
 
     .totals {
@@ -278,7 +278,11 @@ const [ahv, bvg, p3] = t.items;
     }
 
     .control {
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar-line .sub {
+      display: none;
     }
 
     .score {

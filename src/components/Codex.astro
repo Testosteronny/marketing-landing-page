@@ -75,7 +75,20 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
       </div>
     </div>
 
-    <p class="caps foot muted" data-reveal style="--i: 6">{t.foot}</p>
+    <!-- account connections: today, in the works, planned -->
+    <div class="sources" data-reveal style="--i: 6">
+      <span class="caps sources-label">{t.sourcesLabel}</span>
+      {
+        t.sources.map((s) => (
+          <span class="source-chip">
+            <strong>{s.name}</strong>
+            <em class="muted">{s.status}</em>
+          </span>
+        ))
+      }
+    </div>
+
+    <p class="caps foot muted" data-reveal style="--i: 7">{t.foot}</p>
   </div>
 </section>
 
@@ -120,11 +133,11 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
 
   .card-title {
     color: var(--burgundy);
-    font-size: 0.68rem;
+    font-size: 0.76rem;
   }
 
   .verdict {
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     font-weight: 600;
   }
 
@@ -173,17 +186,17 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
   .payee {
     display: grid;
     line-height: 1.3;
-    font-size: 0.98rem;
+    font-size: 1.04rem;
   }
 
   .payee small {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
   }
 
   .amount {
     margin-left: auto;
     font-weight: 600;
-    font-size: 0.98rem;
+    font-size: 1.04rem;
   }
 
   .amount.in {
@@ -202,7 +215,7 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
     grid-template-columns: 3.4rem 1fr auto;
     align-items: center;
     gap: 0.7rem;
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .mname {
@@ -227,7 +240,7 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
   }
 
   .settle-label {
-    font-size: 0.58rem;
+    font-size: 0.68rem;
     color: var(--taupe);
     margin-top: 0.9rem;
     padding-top: 0.7rem;
@@ -241,15 +254,50 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
   }
 
   .settles li {
-    font-size: 0.95rem;
+    font-size: 1.02rem;
     color: var(--sage);
     font-weight: 600;
   }
 
+  .sources {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.4rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--stone);
+  }
+
+  .sources-label {
+    font-size: 0.7rem;
+    color: var(--burgundy);
+  }
+
+  .source-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--stone);
+    border-radius: 6px;
+    background: var(--parchment-veil);
+    font-size: 0.95rem;
+  }
+
+  .source-chip strong {
+    font-weight: 600;
+  }
+
+  .source-chip em {
+    font-size: 0.85rem;
+  }
+
   .foot {
-    font-size: 0.58rem;
+    font-size: 0.68rem;
     text-align: center;
-    margin-top: 1.2rem;
+    margin-top: 1rem;
   }
 
   @media (max-width: 980px) {
