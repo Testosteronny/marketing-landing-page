@@ -47,14 +47,36 @@ const en = {
     tomorrowText:
       "AHV, pension fund, pillar 3a, and private assets in one overview — projections built only from numbers you confirmed.",
     foundation: "One shared inventory, one encrypted vault, one device — yours.",
+    networthLabel: "Net worth",
+    networthTotal: "214'350",
+    networth: [
+      { name: "Accounts", amount: "48'200" },
+      { name: "ETF", amount: "96'400" },
+      { name: "Gold", amount: "12'300" },
+      { name: "Bitcoin", amount: "8'950" },
+      { name: "Pillar 3a", amount: "74'500" },
+      { name: "Mortgage", amount: "−26'000", neg: true },
+    ],
   },
 
   pillars: {
     latin: "Tres columnae",
     translation: "three columns",
     headline: "Your retirement goal — carried by three pillars.",
-    intro:
-      "AHV, pension fund, 3a & private: Sueleli raises all three in one place and measures them against your goal.",
+    benefits: [
+      {
+        lead: "Catch AHV gaps early",
+        text: "Every contribution year in view — gaps can only be repaired for five years.",
+      },
+      {
+        lead: "Find lost pension money",
+        text: "Tracks down forgotten vested-benefits accounts via the LOB Guarantee Fund.",
+      },
+      {
+        lead: "Max out pillar 3a",
+        text: "Tracks your 3a room incl. catch-up contributions (new since 2025), across up to five accounts.",
+      },
+    ],
     items: [
       { numeral: "I", name: "AHV", sub: "The state pension" },
       { numeral: "II", name: "BVG", sub: "Your pension fund" },

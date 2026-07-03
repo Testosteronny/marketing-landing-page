@@ -49,14 +49,36 @@ const fr: typeof en = {
     tomorrowText:
       "AVS, caisse de pension, pilier 3a et fortune privée en une seule vue — des projections bâties uniquement sur des chiffres confirmés.",
     foundation: "Un inventaire commun, un coffre chiffré, un appareil — le vôtre.",
+    networthLabel: "Fortune nette",
+    networthTotal: "214'350",
+    networth: [
+      { name: "Comptes", amount: "48'200" },
+      { name: "ETF", amount: "96'400" },
+      { name: "Or", amount: "12'300" },
+      { name: "Bitcoin", amount: "8'950" },
+      { name: "Pilier 3a", amount: "74'500" },
+      { name: "Hypothèque", amount: "−26'000", neg: true },
+    ],
   },
 
   pillars: {
     latin: "Tres columnae",
     translation: "trois colonnes",
     headline: "Votre objectif de retraite — porté par trois piliers.",
-    intro:
-      "AVS, caisse de pension, 3a & privé : Sueleli les érige tous les trois au même endroit et les mesure à votre objectif.",
+    benefits: [
+      {
+        lead: "Repérer tôt les lacunes AVS",
+        text: "Chaque année de cotisation en vue — une lacune ne se comble que pendant cinq ans.",
+      },
+      {
+        lead: "Retrouver les avoirs oubliés",
+        text: "Déniche les comptes de libre passage oubliés via le fonds de garantie LPP.",
+      },
+      {
+        lead: "Exploiter le 3a à fond",
+        text: "Suit votre marge 3a, rattrapages compris (nouveau dès 2025), jusqu'à cinq comptes.",
+      },
+    ],
     items: [
       { numeral: "I", name: "AVS", sub: "La prévoyance étatique" },
       { numeral: "II", name: "LPP", sub: "Votre caisse de pension" },

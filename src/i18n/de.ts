@@ -49,14 +49,36 @@ const de: typeof en = {
     tomorrowText:
       "AHV, Pensionskasse, Säule 3a und Privatvermögen in einer Übersicht — Projektionen nur aus Zahlen, die du bestätigt hast.",
     foundation: "Ein gemeinsames Inventar, ein verschlüsselter Tresor, ein Gerät — deins.",
+    networthLabel: "Nettovermögen",
+    networthTotal: "214'350",
+    networth: [
+      { name: "Konten", amount: "48'200" },
+      { name: "ETF", amount: "96'400" },
+      { name: "Gold", amount: "12'300" },
+      { name: "Bitcoin", amount: "8'950" },
+      { name: "Säule 3a", amount: "74'500" },
+      { name: "Hypothek", amount: "−26'000", neg: true },
+    ],
   },
 
   pillars: {
     latin: "Tres columnae",
     translation: "drei Säulen",
     headline: "Dein Vorsorgeziel — getragen von drei Säulen.",
-    intro:
-      "AHV, Pensionskasse, 3a & privat: Sueleli richtet alle drei an einem Ort auf und misst sie an deinem Ziel.",
+    benefits: [
+      {
+        lead: "AHV-Lücken früh erkennen",
+        text: "Jedes Beitragsjahr im Blick — Lücken lassen sich nur fünf Jahre lang schliessen.",
+      },
+      {
+        lead: "Verlorene PK-Gelder finden",
+        text: "Spürt vergessene Freizügigkeitskonten über den Sicherheitsfonds BVG auf.",
+      },
+      {
+        lead: "Säule 3a voll ausschöpfen",
+        text: "Verfolgt deinen 3a-Spielraum inkl. Nachzahlungen (neu ab 2025), für bis zu fünf Konten.",
+      },
+    ],
     items: [
       { numeral: "I", name: "AHV", sub: "Die staatliche Vorsorge" },
       { numeral: "II", name: "BVG", sub: "Deine Pensionskasse" },

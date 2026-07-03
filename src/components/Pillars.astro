@@ -20,9 +20,7 @@ const [ahv, bvg, p3] = t.items;
   <div class="wrap">
     <ChapterHead latin={t.latin} translation={t.translation} headline={t.headline} />
 
-    <p class="intro" data-reveal style="--i: 2">{t.intro}</p>
-
-    <div class="temple veil" data-reveal style="--i: 3">
+    <div class="temple veil" data-reveal style="--i: 2">
       <figure class="gauge-col">
         <svg id="pillar-gauge" viewBox="0 0 440 250" role="img" aria-label={t.sim.gaugeAria}>
           <path
@@ -120,15 +118,53 @@ const [ahv, bvg, p3] = t.items;
       </div>
     </div>
 
-    <p class="muted couple-note" data-reveal style="--i: 4">{t.coupleNote}</p>
+    <!-- what the app actually does for each pillar -->
+    <div class="benefits">
+      {
+        t.benefits.map((b, i) => (
+          <p class="benefit" data-reveal style={`--i: ${i + 3}`}>
+            <span
+              class="b-dot"
+              style={`background: var(--${["burgundy", "gold", "sage"][i]})`}
+              aria-hidden="true"
+            />
+            <strong>{b.lead}</strong>
+            {b.text}
+          </p>
+        ))
+      }
+    </div>
+
+    <p class="muted couple-note" data-reveal style="--i: 6">{t.coupleNote}</p>
   </div>
 </section>
 
 <style>
-  .intro {
-    max-width: 44em;
-    margin-bottom: 1.4rem;
-    font-size: 1.1rem;
+  /* per-pillar benefit rows under the panel */
+  .benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.2rem, 2.5vw, 2.4rem);
+    margin-top: 1.1rem;
+  }
+
+  .benefit {
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .b-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 0.45rem;
+  }
+
+  .benefit strong {
+    color: var(--burgundy);
+    font-weight: 600;
+    margin-right: 0.35rem;
   }
 
   .temple {
@@ -257,10 +293,20 @@ const [ahv, bvg, p3] = t.items;
     }
   }
 
+  @media (max-width: 720px) {
+    .benefits {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+  }
+
   @media (min-width: 1024px) and (hover: hover) and (max-height: 860px) {
-    .intro {
-      font-size: 1.02rem;
-      margin-bottom: 0.9rem;
+    .benefit {
+      font-size: 0.9rem;
+    }
+
+    .benefits {
+      margin-top: 0.7rem;
     }
 
     .couple-note {

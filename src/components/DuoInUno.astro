@@ -61,7 +61,25 @@ const perMonth = dict.pillars.sim.perMonth;
       </article>
     </div>
 
-    <p class="foundation muted" data-reveal style="--i: 4">{t.foundation}</p>
+    <!-- the shared foundation, made visible: net worth across everything —
+         accounts, ETFs, gold, crypto, pillar 3a, minus the mortgage -->
+    <div class="networth veil num" data-reveal style="--i: 4">
+      <span class="nw-head">
+        <span class="caps nw-label">{t.networthLabel}</span>
+        <span class="nw-total">CHF {t.networthTotal}</span>
+      </span>
+      <span class="nw-chips">
+        {
+          t.networth.map((n) => (
+            <span class:list={["nw-chip", { neg: n.neg }]}>
+              {n.name} <strong>{n.amount}</strong>
+            </span>
+          ))
+        }
+      </span>
+    </div>
+
+    <p class="foundation muted" data-reveal style="--i: 5">{t.foundation}</p>
   </div>
 </section>
 
@@ -166,10 +184,60 @@ const perMonth = dict.pillars.sim.perMonth;
     font-size: 0.85rem;
   }
 
+  /* ---- net-worth strip ---- */
+  .networth {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.2rem, 2.5vw, 2.2rem);
+    flex-wrap: wrap;
+    margin-top: clamp(1.6rem, 3.5vh, 2.6rem);
+    padding: 0.95rem 1.5rem;
+  }
+
+  .nw-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+  }
+
+  .nw-label {
+    font-size: 0.72rem;
+    color: var(--burgundy);
+  }
+
+  .nw-total {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--burgundy);
+    white-space: nowrap;
+  }
+
+  .nw-chips {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem 1.2rem;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+
+  .nw-chip {
+    font-size: 0.95rem;
+    color: var(--taupe);
+    white-space: nowrap;
+  }
+
+  .nw-chip strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .nw-chip.neg strong {
+    color: var(--ruby);
+  }
+
   .foundation {
-    margin-top: clamp(1.8rem, 3.5vh, 2.8rem);
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--stone);
+    margin-top: 1.1rem;
     font-style: italic;
     text-align: center;
     max-width: 44em;

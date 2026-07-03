@@ -49,14 +49,36 @@ const it: typeof en = {
     tomorrowText:
       "AVS, cassa pensioni, pilastro 3a e patrimonio privato in un'unica panoramica — proiezioni costruite solo su cifre confermate.",
     foundation: "Un inventario condiviso, una cassaforte cifrata, un dispositivo — il tuo.",
+    networthLabel: "Patrimonio netto",
+    networthTotal: "214'350",
+    networth: [
+      { name: "Conti", amount: "48'200" },
+      { name: "ETF", amount: "96'400" },
+      { name: "Oro", amount: "12'300" },
+      { name: "Bitcoin", amount: "8'950" },
+      { name: "Pilastro 3a", amount: "74'500" },
+      { name: "Ipoteca", amount: "−26'000", neg: true },
+    ],
   },
 
   pillars: {
     latin: "Tres columnae",
     translation: "tre colonne",
     headline: "Il tuo obiettivo di pensione — sorretto da tre pilastri.",
-    intro:
-      "AVS, cassa pensioni, 3a & privato: Sueleli li erige tutti e tre in un unico luogo e li misura sul tuo obiettivo.",
+    benefits: [
+      {
+        lead: "Scoprire presto le lacune AVS",
+        text: "Ogni anno di contribuzione in vista — una lacuna si colma solo entro cinque anni.",
+      },
+      {
+        lead: "Ritrovare gli averi dimenticati",
+        text: "Rintraccia i conti di libero passaggio dimenticati tramite il fondo di garanzia LPP.",
+      },
+      {
+        lead: "Sfruttare al massimo il 3a",
+        text: "Segue il tuo margine 3a, recuperi inclusi (novità dal 2025), fino a cinque conti.",
+      },
+    ],
     items: [
       { numeral: "I", name: "AVS", sub: "La previdenza statale" },
       { numeral: "II", name: "LPP", sub: "La tua cassa pensioni" },
