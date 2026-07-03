@@ -1,0 +1,159 @@
+---
+// SALVE — arrival at the temple. The product film sits large beside the
+// welcome; click to play, native controls carry volume and fullscreen.
+import { getDict, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).hero;
+---
+
+<section id="top" class="hero" data-observe>
+  <div class="wrap grid">
+    <div class="copy">
+      <h1 data-reveal style="--i: 1">
+        <span class="display">Salve<span class="accent">.</span></span>
+        <span class="welcome">{t.welcome}</span>
+        <span class="caps tagline">{t.eyebrow}</span>
+      </h1>
+      <p class="lede" data-reveal style="--i: 2" set:html={t.lede} />
+      <div class="actions" data-reveal style="--i: 3">
+        <a class="btn btn-ghost" href="#privacy">{t.ctaGhost}</a>
+      </div>
+    </div>
+
+    <figure class="video-col" data-reveal style="--i: 2">
+      <div class="film">
+        <video
+          id="hero-video"
+          src="/assets/video/sueleli-promo.mp4"
+          poster="/assets/video/sueleli-promo-poster.jpg"
+          controls
+          playsinline
+          preload="metadata"
+          aria-label={t.videoAria}
+        ></video>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(6.5rem, 11vh, 9rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    min-height: 100svh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 0.72fr 1.28fr;
+    gap: clamp(2.2rem, 4.5vw, 4rem);
+    align-items: center;
+  }
+
+  h1 {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .display {
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    line-height: 1.02;
+  }
+
+  .welcome {
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* the engraved subtitle — the brand claim, folded into the title */
+  .tagline {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--burgundy);
+  }
+
+  .lede {
+    margin-top: 1.4rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  /* ---- the film ---- */
+  .video-col {
+    margin: 0;
+  }
+
+  .film {
+    position: relative;
+    border: 1px solid var(--stone);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 70px -28px rgba(41, 36, 32, 0.4),
+      0 0 0 1px rgba(198, 154, 61, 0.18);
+  }
+
+  /* fine gold hairline along the top edge — the house accent */
+  .film::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--marble);
+  }
+
+  @media (max-width: 880px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: 0;
+    }
+
+    .video-col {
+      order: 2;
+    }
+  }
+
+  /* desktop snap mode on short screens: the hero must fit one screen */
+  @media (min-width: 1024px) and (hover: hover) and (max-height: 860px) {
+    .hero {
+      padding-top: 5.5rem;
+      padding-bottom: 1.6rem;
+    }
+
+    .display {
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+    }
+
+    .grid {
+      grid-template-columns: 0.78fr 1.22fr;
+    }
+  }
+</style>

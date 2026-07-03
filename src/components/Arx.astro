@@ -1,0 +1,196 @@
+---
+import ChapterHead from "./ChapterHead.astro";
+import { getDict, type Lang } from "../i18n";
+
+// ARX — the trust centerpiece. Two stone tablets; the asymmetry of the two
+// lists is the argument.
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).arx;
+---
+
+<section id="privacy" class="chapter" data-observe>
+  <div class="wrap">
+    <ChapterHead latin={t.latin} translation={t.translation} headline={t.headline} />
+
+    <div class="tablets">
+      <article class="tablet" data-reveal style="--i: 2">
+        <h3 class="caps tablet-title">{t.onDeviceTitle}</h3>
+        <ul>
+          {t.onDevice.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="tablet-foot muted">{t.onDeviceFoot}</p>
+      </article>
+
+      <article class="tablet short" data-reveal style="--i: 3">
+        <h3 class="caps tablet-title">{t.onServerTitle}</h3>
+        <ul>
+          {t.onServer.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="tablet-foot muted">{t.onServerFoot}</p>
+      </article>
+    </div>
+
+    <div class="facts">
+      {
+        t.facts.map((f, i) => (
+          <div class="fact" data-reveal style={`--i: ${i + 4}`}>
+            <span class="fact-icon" aria-hidden="true">
+              {i === 0 && (
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                  <path d="M14 14h3v3h-3zM18 18h3v3h-3z" />
+                </svg>
+              )}
+              {i === 1 && (
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                  <path d="M6 17a4.5 4.5 0 1 1 1-8.9A6 6 0 0 1 18.5 9 3.75 3.75 0 0 1 18 16.5" />
+                  <line x1="4" y1="21" x2="20" y2="4" />
+                </svg>
+              )}
+              {i === 2 && (
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                  <rect x="6" y="3" width="12" height="18" rx="1.5" />
+                  <line x1="9" y1="8" x2="15" y2="8" />
+                  <line x1="9" y1="12" x2="15" y2="12" />
+                  <line x1="3" y1="15.5" x2="21" y2="15.5" stroke="var(--gold)" />
+                </svg>
+              )}
+            </span>
+            <p>
+              <strong>{f.lead}</strong>
+              {f.text}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .tablets {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(1.5rem, 3.5vw, 2.8rem);
+    align-items: start;
+  }
+
+  /* stone tablets with notched corners */
+  .tablet {
+    background: var(--parchment-veil);
+    border: 1px solid var(--stone);
+    padding: 2rem 1.9rem 1.6rem;
+    clip-path: polygon(
+      12px 0, calc(100% - 12px) 0, 100% 12px,
+      100% calc(100% - 12px), calc(100% - 12px) 100%,
+      12px 100%, 0 calc(100% - 12px), 0 12px
+    );
+  }
+
+  .tablet-title {
+    font-size: 0.72rem;
+    color: var(--burgundy);
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--gold);
+    margin-bottom: 1.1rem;
+  }
+
+  .tablet ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .tablet li {
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.02rem;
+  }
+
+  .tablet li::before {
+    content: "❧";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.85rem;
+  }
+
+  .tablet.short li::before {
+    content: "·";
+    color: var(--taupe);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .tablet-foot {
+    margin-top: 1.3rem;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.4rem, 3vw, 2.6rem);
+    margin-top: clamp(1.8rem, 4vh, 3rem);
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--stone);
+    font-size: 0.98rem;
+  }
+
+  .fact {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+
+  .fact-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--burgundy);
+    background: var(--parchment-veil);
+  }
+
+  .facts strong {
+    display: block;
+    color: var(--burgundy);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  @media (max-width: 880px) {
+    .tablets,
+    .facts {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* desktop snap mode: the whole chapter must fit one screen */
+  @media (min-width: 1024px) and (hover: hover) {
+    .tablet {
+      padding: 1.5rem 1.6rem 1.2rem;
+    }
+
+    .tablet ul {
+      gap: 0.4rem;
+    }
+
+    .facts {
+      margin-top: 1.6rem;
+      padding-top: 1.2rem;
+    }
+  }
+</style>

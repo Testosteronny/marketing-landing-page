@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "marketing-site",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Users/ronny/Desktop/Sueleli/Marketing Landing Page/node_modules/astro/bin/astro.mjs",
+        "dev",
+        "--root",
+        "C:/Users/ronny/Desktop/Sueleli/Marketing Landing Page"
+      ],
+      "port": 4321
+    }
+  ]
+}

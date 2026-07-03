@@ -1,0 +1,403 @@
+/* ------------------------------------------------------------------ */
+/* Sueleli marketing site — design tokens & base                       */
+/* Palette and surface rules mirror the app's DESIGN.md.               */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --burgundy: #5a1024;
+  --burgundy-dark: #3b0716;
+  --gold: #c69a3d;
+  --gold-bright: #e6b83f;
+  --marble: #f5ede2;
+  --parchment: #fff8ef;
+  --parchment-veil: rgba(255, 248, 239, 0.7);
+  --stone: #d8c8ae;
+  --taupe: #9e917f;
+  --ink: #292420;
+  --sage: #7b856a;
+  --ruby: #8a1f24;
+
+  --font-caps: "Cinzel", "Times New Roman", serif;
+  --font-serif: "EB Garamond", Georgia, serif;
+
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --content-w: 1400px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--marble);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Fixed marble canvas — same texture as the app shell */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url("/assets/marble-canvas.webp") center / cover no-repeat;
+}
+
+/* Fine film grain over everything */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--burgundy);
+  color: var(--parchment);
+}
+
+/* ------------------------------------------------------------------ */
+/* Typography                                                          */
+/* ------------------------------------------------------------------ */
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.display {
+  font-size: clamp(3.4rem, 8vw, 6.8rem);
+  letter-spacing: -0.01em;
+}
+
+.headline {
+  font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+}
+
+.caps {
+  font-family: var(--font-caps);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.accent {
+  color: var(--burgundy);
+}
+
+.muted {
+  color: var(--taupe);
+}
+
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.lede {
+  font-size: clamp(1.2rem, 2vw, 1.375rem);
+  line-height: 1.6;
+  max-width: 34em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout primitives                                                   */
+/* ------------------------------------------------------------------ */
+
+.wrap {
+  width: min(var(--content-w), 100% - 3rem);
+  margin-inline: auto;
+}
+
+.chapter {
+  padding-block: clamp(5.5rem, 11vw, 9.5rem);
+}
+
+/* Engraved chapter heading: latin eyebrow + headline + drawn rule */
+.chapter-head {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.chapter-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  color: var(--burgundy);
+}
+
+.chapter-eyebrow .translation {
+  color: var(--taupe);
+  letter-spacing: 0.08em;
+  font-style: italic;
+  font-family: var(--font-serif);
+  text-transform: none;
+  font-size: 0.9375rem;
+}
+
+.chapter-head .headline {
+  margin-top: 0.9rem;
+  max-width: 18em;
+}
+
+.rule {
+  height: 1px;
+  margin-top: 1.4rem;
+  background: linear-gradient(90deg, var(--gold) 0 55%, transparent);
+  transform-origin: left center;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cards & buttons                                                     */
+/* ------------------------------------------------------------------ */
+
+.veil {
+  background: var(--parchment-veil);
+  border: 1px solid var(--stone);
+  border-radius: 8px;
+  backdrop-filter: blur(2px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.9rem;
+  border-radius: 6px;
+  font-family: var(--font-caps);
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.btn-primary {
+  background: var(--burgundy);
+  color: var(--parchment);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px rgba(230, 184, 63, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--burgundy-dark);
+}
+
+.btn-ghost {
+  border-color: var(--stone);
+  color: var(--ink);
+  background: var(--parchment-veil);
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+}
+
+/* ------------------------------------------------------------------ */
+/* Antique-gold range sliders — the app's scenario-slider language,    */
+/* shared by the Pillars gauge and the Scaena stage.                   */
+/* ------------------------------------------------------------------ */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) var(--fill, 50%), var(--stone) 0);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--parchment);
+  box-shadow: 0 1px 4px rgba(41, 36, 32, 0.35);
+  margin-top: -8px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: var(--stone);
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 2px;
+  background: var(--gold);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--parchment);
+}
+
+/* shared control block for slider panels */
+.control {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.control-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 1.05rem;
+}
+
+.control-head output {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.minmax {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion — engraving, not fireworks.                                  */
+/* Hidden states only apply once JS is confirmed (html.js);            */
+/* without JS the page is fully visible.                               */
+/* ------------------------------------------------------------------ */
+
+html.js [data-observe] .rule {
+  transform: scaleX(0);
+  transition: transform 0.9s var(--ease) 0.15s;
+}
+
+html.js [data-observe].is-inview .rule {
+  transform: scaleX(1);
+}
+
+html.js [data-observe] [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+html.js [data-observe].is-inview [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-observe] [data-reveal],
+  html.js [data-observe] .rule {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Desktop: full-screen chapter snapping.                              */
+/* Every chapter is a complete "room" — a scroll gesture lands on the  */
+/* next section, never between two. Mobile keeps natural scrolling.    */
+/* ------------------------------------------------------------------ */
+
+@media (min-width: 1024px) and (hover: hover) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  main > section,
+  .snap-end {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .chapter {
+    box-sizing: border-box;
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    padding-block: clamp(4rem, 9vh, 6.5rem);
+  }
+
+  .chapter-head {
+    margin-bottom: clamp(1.6rem, 3.5vh, 3rem);
+  }
+
+  /* the close: download band + footer share the final screen */
+  .snap-end {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+
+  .snap-end > section {
+    display: grid;
+    align-content: center;
+  }
+}
+
+/* Shorter laptop screens: compress verticals so every chapter fits one screen */
+@media (min-width: 1024px) and (hover: hover) and (max-height: 860px) {
+  body {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .chapter {
+    padding-block: 2.75rem;
+  }
+
+  .chapter-head {
+    margin-bottom: clamp(1.4rem, 3vh, 2.2rem);
+  }
+
+  .chapter-head .headline {
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  }
+
+  .lede {
+    font-size: 1.15rem;
+  }
+}

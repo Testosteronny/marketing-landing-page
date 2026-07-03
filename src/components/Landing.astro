@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import DuoInUno from "./DuoInUno.astro";
+import Pillars from "./Pillars.astro";
+import Scaena from "./Scaena.astro";
+import Codex from "./Codex.astro";
+import Arx from "./Arx.astro";
+import Gratis from "./Gratis.astro";
+import Descende from "./Descende.astro";
+import Footer from "./Footer.astro";
+import ChapterRail from "./ChapterRail.astro";
+import { getDict, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang);
+---
+
+<Base lang={lang} title={t.meta.title} description={t.meta.description}>
+  <Header lang={lang} />
+  <ChapterRail />
+  <main>
+    <Hero lang={lang} />
+    <DuoInUno lang={lang} />
+    <Pillars lang={lang} />
+    <Scaena lang={lang} />
+    <Codex lang={lang} />
+    <Arx lang={lang} />
+    <Gratis lang={lang} />
+  </main>
+  <div class="snap-end">
+    <Descende lang={lang} />
+    <Footer lang={lang} />
+  </div>
+</Base>

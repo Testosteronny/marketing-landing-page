@@ -1,0 +1,69 @@
+---
+import { getDict, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).footer;
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="wrap inner">
+    <p class="caps sign">Sueleli</p>
+    <p class="muted note">{t.note}</p>
+    <nav aria-label="Footer">
+      <a href="#contact">{t.contact}</a>
+      <a href="#privacy">{t.privacy}</a>
+      <span class="muted">© {year} Sueleli</span>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--burgundy-dark);
+    color: var(--stone);
+    padding-block: 2.6rem;
+    border-top: 1px solid rgba(198, 154, 61, 0.35);
+  }
+
+  .inner {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .sign {
+    color: var(--gold);
+  }
+
+  .note {
+    font-style: italic;
+  }
+
+  nav {
+    margin-left: auto;
+    display: flex;
+    gap: 1.6rem;
+    font-size: 0.9375rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--stone);
+  }
+
+  nav a:hover {
+    color: var(--gold-bright);
+  }
+
+  @media (min-width: 1024px) and (hover: hover) and (max-height: 860px) {
+    .site-footer {
+      padding-block: 1.4rem;
+    }
+  }
+</style>

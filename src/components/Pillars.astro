@@ -1,0 +1,296 @@
+---
+import ChapterHead from "./ChapterHead.astro";
+import { getDict, type Lang } from "../i18n";
+
+// TRES COLUMNAE — the temple in the logo IS the Swiss pension system.
+// The retirement-goal gauge is the centerpiece: one slider per pillar,
+// each feeding its color segment. The arc only fills to the simulated
+// score — the rest stays empty stone track.
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).pillars;
+const [ahv, bvg, p3] = t.items;
+---
+
+<section id="pillars" class="chapter" data-observe data-years={t.sim.yearsUnit}>
+  <div class="wrap">
+    <ChapterHead latin={t.latin} translation={t.translation} headline={t.headline} />
+
+    <p class="intro" data-reveal style="--i: 2">{t.intro}</p>
+
+    <div class="temple veil" data-reveal style="--i: 3">
+      <figure class="gauge-col">
+        <svg id="pillar-gauge" viewBox="0 0 440 250" role="img" aria-label={t.sim.gaugeAria}>
+          <path
+            class="track"
+            d="M50,210 A170,170 0 0 1 390,210"
+            fill="none"
+            stroke="var(--stone)"
+            stroke-width="22"
+            stroke-linecap="round"
+            opacity="0.55"
+          />
+          <!-- round caps at the fill's outer ends; segments join flat between -->
+          <path id="pg-capA" fill="none" stroke-width="22" stroke-linecap="round" d="" />
+          <path id="pg-seg1" fill="none" stroke="var(--burgundy)" stroke-width="22" d="" />
+          <path id="pg-seg2" fill="none" stroke="var(--gold)" stroke-width="22" d="" />
+          <path id="pg-seg3" fill="none" stroke="var(--sage)" stroke-width="22" d="" />
+          <path id="pg-capB" fill="none" stroke-width="22" stroke-linecap="round" d="" />
+          <text id="pg-score" x="220" y="168" text-anchor="middle" class="score num">0%</text>
+          <text x="220" y="200" text-anchor="middle" class="score-sub">{t.sim.scoreSub}</text>
+        </svg>
+        <div class="totals">
+          <p class="caps total-label">{t.sim.totalLabel}</p>
+          <p class="total-value num">
+            CHF <span id="pg-total">0</span>
+            <span class="muted per">{t.sim.perMonth}</span>
+          </p>
+        </div>
+      </figure>
+
+      <div class="controls">
+        <label class="control">
+          <span class="pillar-line">
+            <svg class="col-icon" viewBox="0 0 24 30" aria-hidden="true" style="color: var(--burgundy)">
+              <path d="M2 5 L5 0 H19 L22 5 Z" fill="currentColor" />
+              <rect x="6" y="6" width="12" height="18" fill="currentColor" opacity="0.45" />
+              <rect x="9" y="6" width="1.4" height="18" fill="currentColor" opacity="0.5" />
+              <rect x="13.5" y="6" width="1.4" height="18" fill="currentColor" opacity="0.5" />
+              <rect x="2" y="25" width="20" height="5" fill="currentColor" />
+            </svg>
+            <span class="caps pnum">{ahv.numeral} · {ahv.name}</span>
+            <em class="muted sub">{ahv.sub}</em>
+            <span class="derived num muted">CHF <span id="pg-val1">0</span> {t.sim.perMonth}</span>
+          </span>
+          <span class="control-head">
+            <span>{t.sim.ahvLabel}</span>
+            <output id="pg-out-years" class="num accent">41 {t.sim.yearsUnit}</output>
+          </span>
+          <input id="pg-years" type="range" min="0" max="44" value="41" step="1" />
+          <span class="minmax num muted"><span>0</span><span>44</span></span>
+        </label>
+
+        <label class="control">
+          <span class="pillar-line">
+            <svg class="col-icon" viewBox="0 0 24 30" aria-hidden="true" style="color: var(--gold)">
+              <path d="M2 5 L5 0 H19 L22 5 Z" fill="currentColor" />
+              <rect x="6" y="6" width="12" height="18" fill="currentColor" opacity="0.45" />
+              <rect x="9" y="6" width="1.4" height="18" fill="currentColor" opacity="0.5" />
+              <rect x="13.5" y="6" width="1.4" height="18" fill="currentColor" opacity="0.5" />
+              <rect x="2" y="25" width="20" height="5" fill="currentColor" />
+            </svg>
+            <span class="caps pnum">{bvg.numeral} · {bvg.name}</span>
+            <em class="muted sub">{bvg.sub}</em>
+            <span class="derived num muted">CHF <span id="pg-val2">0</span> {t.sim.perMonth}</span>
+          </span>
+          <span class="control-head">
+            <span>{t.sim.bvgLabel}</span>
+            <output id="pg-out-capital" class="num accent">CHF 500'000</output>
+          </span>
+          <input id="pg-capital" type="range" min="0" max="1000000" value="500000" step="25000" />
+          <span class="minmax num muted"><span>0</span><span>1'000'000</span></span>
+        </label>
+
+        <label class="control">
+          <span class="pillar-line">
+            <svg class="col-icon" viewBox="0 0 24 30" aria-hidden="true" style="color: var(--sage)">
+              <path d="M2 5 L5 0 H19 L22 5 Z" fill="currentColor" />
+              <rect x="6" y="6" width="12" height="18" fill="currentColor" opacity="0.45" />
+              <rect x="9" y="6" width="1.4" height="18" fill="currentColor" opacity="0.5" />
+              <rect x="13.5" y="6" width="1.4" height="18" fill="currentColor" opacity="0.5" />
+              <rect x="2" y="25" width="20" height="5" fill="currentColor" />
+            </svg>
+            <span class="caps pnum">{p3.numeral} · {p3.name}</span>
+            <em class="muted sub">{p3.sub}</em>
+            <span class="derived num muted">CHF <span id="pg-val3">0</span> {t.sim.perMonth}</span>
+          </span>
+          <span class="control-head">
+            <span>{t.sim.p3Label}</span>
+            <output id="pg-out-save" class="num accent">CHF 150'000</output>
+          </span>
+          <input id="pg-save" type="range" min="0" max="500000" value="150000" step="12500" />
+          <span class="minmax num muted"><span>0</span><span>500'000</span></span>
+        </label>
+
+        <p class="muted goal-note">{t.sim.goalNote}</p>
+      </div>
+    </div>
+
+    <p class="muted couple-note" data-reveal style="--i: 4">{t.coupleNote}</p>
+  </div>
+</section>
+
+<style>
+  .intro {
+    max-width: 44em;
+    margin-bottom: 1.4rem;
+    font-size: 1.1rem;
+  }
+
+  .temple {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(1.8rem, 4vw, 3.2rem);
+    padding: clamp(1.6rem, 3vw, 2.6rem);
+    align-items: center;
+  }
+
+  .gauge-col {
+    margin: 0;
+  }
+
+  #pillar-gauge {
+    display: block;
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .score {
+    font-family: var(--font-serif);
+    font-size: 64px;
+    font-weight: 600;
+    fill: var(--burgundy);
+  }
+
+  .score-sub {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-style: italic;
+    fill: var(--taupe);
+  }
+
+  .totals {
+    text-align: center;
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--stone);
+  }
+
+  .total-label {
+    font-size: 0.62rem;
+    color: var(--ink);
+  }
+
+  .total-value {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--burgundy);
+  }
+
+  .per {
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* pillar identity above each slider; derived income sits at its right */
+  .pillar-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .col-icon {
+    width: 15px;
+    height: 19px;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  .pnum {
+    font-size: 0.72rem;
+    color: var(--burgundy);
+  }
+
+  .sub {
+    font-size: 0.85rem;
+  }
+
+  .control {
+    margin-bottom: 0.75rem;
+  }
+
+  .control-head {
+    font-size: 0.98rem;
+  }
+
+  .derived {
+    margin-left: auto;
+    font-size: 0.85rem;
+  }
+
+  .goal-note {
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 0.4rem;
+  }
+
+  /* couple mode, in one engraved line */
+  .couple-note {
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  @media (max-width: 880px) {
+    .temple {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* desktop snap mode: the whole chapter must fit one screen */
+  @media (min-width: 1024px) and (hover: hover) {
+    section {
+      padding-block: 2.75rem;
+    }
+
+    section :global(.chapter-head) {
+      margin-bottom: 1.4rem;
+    }
+  }
+
+  @media (min-width: 1024px) and (hover: hover) and (max-height: 860px) {
+    .intro {
+      font-size: 1.02rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .couple-note {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .totals {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+    }
+
+    .temple {
+      padding: 1.2rem 1.8rem;
+    }
+
+    .control {
+      margin-bottom: 0.55rem;
+    }
+
+    .score {
+      font-size: 56px;
+    }
+
+    #pillar-gauge {
+      max-width: 440px;
+    }
+
+    .control-head {
+      font-size: 0.9rem;
+    }
+  }
+</style>

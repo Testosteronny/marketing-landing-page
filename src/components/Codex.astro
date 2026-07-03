@@ -1,0 +1,294 @@
+---
+import ChapterHead from "./ChapterHead.astro";
+import { getDict, type Lang } from "../i18n";
+
+// CODEX — the daily ledger, plus the two features people actually ask about:
+// shared holiday pots (who paid, who owes whom) and subscriptions.
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).codex;
+const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""))));
+---
+
+<section id="codex" class="chapter" data-observe>
+  <div class="wrap">
+    <ChapterHead latin={t.latin} translation={t.translation} headline={t.headline} />
+
+    <p class="intro" data-reveal style="--i: 2">{t.p1}</p>
+
+    <div class="cards">
+      <!-- monthly ledger -->
+      <div class="card veil" data-reveal style="--i: 3" role="img" aria-label={t.ledgerAria}>
+        <header class="card-head">
+          <p class="caps card-title">{t.month}</p>
+          <p class="num verdict"><span class="muted">{t.budgetWord}</span> CHF 3'416 / 4'200</p>
+        </header>
+        <div class="budget-bar" aria-hidden="true"><div class="fill"></div></div>
+        <ul class="rows">
+          {
+            t.entries.map((e, i) => (
+              <li class="row" data-reveal style={`--i: ${i + 4}`}>
+                <span class="payee">
+                  {e.payee}
+                  <small class="muted">{e.cat}</small>
+                </span>
+                <span class={`amount num ${e.kind}`}>{e.amount}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- holiday pot with group split -->
+      <div class="card veil" data-reveal style="--i: 4">
+        <header class="card-head">
+          <p class="caps card-title">{t.holidayTitle}</p>
+          <p class="num verdict muted">{t.holidayTotal}</p>
+        </header>
+        <ul class="members num">
+          {
+            t.members.map((m) => (
+              <li>
+                <span class="mname">{m.name}</span>
+                <span class="mbar" aria-hidden="true">
+                  <span
+                    class="mfill"
+                    style={`width: ${Math.round((Number(m.amount.replace("'", "")) / maxPaid) * 100)}%`}
+                  />
+                </span>
+                <span class="mamount">CHF {m.amount}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="caps settle-label">{t.settleLabel}</p>
+        <ul class="settles num">
+          {t.settles.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+
+      <!-- subscriptions -->
+      <div class="card veil" data-reveal style="--i: 5">
+        <header class="card-head">
+          <p class="caps card-title">{t.subsTitle} ⟳</p>
+        </header>
+        <ul class="rows num">
+          {
+            t.subs.map((s) => (
+              <li class="row">
+                <span class="payee">
+                  {s.name}
+                  {s.detail && <small class="muted">{s.detail}</small>}
+                </span>
+                <span class="amount">{s.amount}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="subs-total num">{t.subsTotal}</p>
+      </div>
+    </div>
+
+    <p class="caps foot muted" data-reveal style="--i: 6">{t.foot}</p>
+  </div>
+</section>
+
+<style>
+  .intro {
+    max-width: 46em;
+    margin-bottom: clamp(1.6rem, 3vh, 2.4rem);
+    font-size: 1.15rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1.1fr 1.1fr 0.8fr;
+    gap: clamp(1.1rem, 2.2vw, 1.8rem);
+    align-items: start;
+  }
+
+  .card {
+    padding: 1.3rem 1.3rem 1.1rem;
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.8rem;
+  }
+
+  .card-title {
+    color: var(--burgundy);
+    font-size: 0.68rem;
+  }
+
+  .verdict {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .budget-bar {
+    height: 4px;
+    background: var(--stone);
+    border-radius: 2px;
+    margin: 0.7rem 0 0.4rem;
+    overflow: hidden;
+  }
+
+  .fill {
+    height: 100%;
+    width: 81%;
+    background: var(--gold);
+    transform-origin: left;
+  }
+
+  html.js [data-observe] .fill {
+    transform: scaleX(0);
+    transition: transform 1.1s var(--ease) 0.5s;
+  }
+
+  html.js [data-observe].is-inview .fill {
+    transform: scaleX(1);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.55rem 0.1rem;
+    border-bottom: 1px solid rgba(216, 200, 174, 0.6);
+  }
+
+  .row:last-child {
+    border-bottom: none;
+  }
+
+  .payee {
+    display: grid;
+    line-height: 1.3;
+    font-size: 0.98rem;
+  }
+
+  .payee small {
+    font-size: 0.78rem;
+  }
+
+  .amount {
+    margin-left: auto;
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  .amount.in {
+    color: var(--sage);
+  }
+
+  /* holiday split */
+  .members {
+    margin-top: 0.8rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .members li {
+    display: grid;
+    grid-template-columns: 3.4rem 1fr auto;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  .mname {
+    font-weight: 500;
+  }
+
+  .mbar {
+    height: 5px;
+    background: var(--stone);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .mfill {
+    display: block;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .mamount {
+    font-weight: 600;
+  }
+
+  .settle-label {
+    font-size: 0.58rem;
+    color: var(--taupe);
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(216, 200, 174, 0.6);
+  }
+
+  .settles {
+    margin-top: 0.35rem;
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .settles li {
+    font-size: 0.95rem;
+    color: var(--sage);
+    font-weight: 600;
+  }
+
+  /* subscriptions */
+  .subs-total {
+    margin-top: 0.7rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(216, 200, 174, 0.6);
+    font-weight: 600;
+    color: var(--burgundy);
+    font-size: 0.98rem;
+  }
+
+  .foot {
+    font-size: 0.58rem;
+    text-align: center;
+    margin-top: 1.2rem;
+  }
+
+  @media (max-width: 980px) {
+    .cards {
+      grid-template-columns: 1fr;
+      max-width: 30rem;
+    }
+  }
+
+  /* desktop snap mode on short screens */
+  @media (min-width: 1024px) and (hover: hover) and (max-height: 860px) {
+    .intro {
+      font-size: 1.05rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .card {
+      padding: 1rem 1.1rem 0.9rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js [data-observe] .fill {
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

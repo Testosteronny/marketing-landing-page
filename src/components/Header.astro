@@ -1,0 +1,113 @@
+---
+// Slim top bar: with snap-scroll + the chapter rail handling orientation,
+// the header carries only what nothing else can — brand, language, the CTA.
+import { getDict, locales, basePath, langNames, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).nav;
+---
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="Sueleli">
+      <img src="/assets/logo.svg" alt="" width="34" height="34" />
+      <span class="caps">Sueleli</span>
+    </a>
+
+    <nav class="lang caps" aria-label="Language">
+      {
+        locales.map((l) => (
+          <a
+            href={basePath(l)}
+            class:list={{ current: l === lang }}
+            aria-current={l === lang ? "page" : undefined}
+            aria-label={langNames[l]}
+            lang={l}
+          >
+            {l}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="btn btn-primary cta" href="#download">{t.cta}</a>
+  </div>
+</header>
+
+<style>
+  /* The app's floating parchment nav bar, translated to web. */
+  .site-header {
+    position: fixed;
+    inset-inline: 0;
+    top: 0.9rem;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .bar {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2.4vw, 2rem);
+    width: min(var(--content-w), 100% - 2rem);
+    padding: 0.55rem 0.65rem 0.55rem 1.1rem;
+    background: rgba(255, 248, 239, 0.88);
+    border: 1px solid var(--stone);
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(41, 36, 32, 0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--burgundy);
+    margin-right: auto;
+  }
+
+  .brand img {
+    border-radius: 50%;
+  }
+
+  .lang {
+    display: flex;
+    gap: 0;
+  }
+
+  .lang a {
+    padding: 0.55rem 0.45rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--taupe);
+    transition: color 0.3s var(--ease);
+  }
+
+  .lang a:hover {
+    color: var(--burgundy);
+  }
+
+  .lang a.current {
+    color: var(--burgundy);
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .cta {
+    padding: 0.65rem 1.3rem;
+    font-size: 0.72rem;
+  }
+
+  @media (max-width: 560px) {
+    .cta {
+      display: none;
+    }
+  }
+</style>

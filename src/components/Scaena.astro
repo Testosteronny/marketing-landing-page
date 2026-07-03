@@ -1,0 +1,215 @@
+---
+import ChapterHead from "./ChapterHead.astro";
+import { getDict, type Lang } from "../i18n";
+
+// SCAENA — a real, working scenario panel. The sliders drive a live
+// capital-timeline chart and a monthly-income figure (illustrative model;
+// the real engine in the app runs on the user's confirmed numbers).
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).scaena;
+---
+
+<section
+  id="scenarios"
+  class="chapter"
+  data-observe
+  data-years={t.yearsWord}
+  data-retire={t.axisRetirement}
+>
+  <div class="wrap">
+    <ChapterHead latin={t.latin} translation={t.translation} headline={t.headline} />
+
+    <div class="stage veil" data-reveal style="--i: 2">
+      <div class="controls">
+        <p class="caps panel-label">{t.panelLabel}</p>
+
+        <div class="control-grid">
+          <label class="control">
+            <span class="control-head">
+              <span>{t.retirementAge}</span>
+              <output id="out-age" class="num accent">65</output>
+            </span>
+            <input id="in-age" type="range" min="63" max="70" value="65" step="1" />
+            <span class="minmax num muted"><span>63</span><span>70</span></span>
+          </label>
+
+          <label class="control">
+            <span class="control-head">
+              <span>{t.lifeExpectancy}</span>
+              <output id="out-life" class="num accent">90</output>
+            </span>
+            <input id="in-life" type="range" min="70" max="100" value="90" step="1" />
+            <span class="minmax num muted"><span>70</span><span>100</span></span>
+          </label>
+
+          <label class="control">
+            <span class="control-head">
+              <span>{t.expectedReturn}</span>
+              <output id="out-yield" class="num accent">4.0%</output>
+            </span>
+            <input id="in-yield" type="range" min="0" max="8" value="4" step="0.5" />
+            <span class="minmax num muted"><span>0%</span><span>8%</span></span>
+          </label>
+
+          <label class="control">
+            <span class="control-head">
+              <span>{t.currentCapital}</span>
+              <output id="out-capital" class="num accent">CHF 50'000</output>
+            </span>
+            <input id="in-capital" type="range" min="0" max="500000" value="50000" step="10000" />
+            <span class="minmax num muted"><span>0</span><span>500'000</span></span>
+          </label>
+
+          <label class="control">
+            <span class="control-head">
+              <span>{t.inheritance}</span>
+              <output id="out-inherit" class="num accent">CHF 0</output>
+            </span>
+            <input id="in-inherit" type="range" min="0" max="500000" value="0" step="10000" />
+            <span class="minmax num muted"><span>0</span><span>500'000</span></span>
+          </label>
+        </div>
+
+        <div class="result">
+          <p class="caps result-label">{t.resultLabel}</p>
+          <p class="result-value num">CHF <span id="out-income">5'060</span></p>
+          <p class="muted result-unit">{t.resultUnit}</p>
+        </div>
+      </div>
+
+      <figure class="chart">
+        <svg id="scenario-chart" viewBox="0 0 640 300" role="img" aria-label={t.chartAria}>
+          <defs>
+            <linearGradient id="capital-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#c69a3d" stop-opacity="0.28" />
+              <stop offset="1" stop-color="#c69a3d" stop-opacity="0.02" />
+            </linearGradient>
+          </defs>
+          <path id="chart-area" fill="url(#capital-fill)" d="" />
+          <path id="chart-line" fill="none" stroke="var(--gold)" stroke-width="2.5" d="" />
+          <line id="chart-break" stroke="var(--stone)" stroke-width="1" stroke-dasharray="3 5" y1="16" y2="266" />
+          <circle id="chart-peak" r="4.5" fill="var(--burgundy)" stroke="var(--parchment)" stroke-width="1.5" />
+          <text id="label-peak-word" class="axis caps-svg" text-anchor="middle" y="24">{t.peakWord}</text>
+          <text id="label-peak" class="peak-value num" text-anchor="middle" y="42">CHF 0</text>
+          <text id="label-retire" class="axis caps-svg" text-anchor="middle" y="288">{t.axisRetirement} · 65</text>
+          <text class="axis caps-svg" text-anchor="start" x="14" y="288">{t.axisToday}</text>
+          <text id="label-life" class="axis caps-svg" text-anchor="end" x="626" y="288">100</text>
+        </svg>
+        <figcaption class="muted">{t.caption}</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stage {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(1.8rem, 4vw, 3.2rem);
+    padding: clamp(1.6rem, 3.5vw, 3rem);
+  }
+
+  .panel-label {
+    color: var(--burgundy);
+    font-size: 0.72rem;
+    margin-bottom: 1.3rem;
+  }
+
+  /* five sliders in two columns to keep the chapter on one screen */
+  .control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.4rem;
+  }
+
+  .control-grid .control {
+    margin-bottom: 0.9rem;
+  }
+
+  .control-grid .control-head {
+    font-size: 0.92rem;
+  }
+
+  .peak-value {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--burgundy);
+  }
+
+  /* slider/control styles are shared in global.css */
+
+  .result {
+    margin-top: 2rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--stone);
+  }
+
+  .result-label {
+    font-size: 0.66rem;
+    color: var(--ink);
+  }
+
+  .result-value {
+    font-size: clamp(2.2rem, 4vw, 2.9rem);
+    font-weight: 600;
+    color: var(--burgundy);
+    line-height: 1.15;
+  }
+
+  .result-unit {
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .chart svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .axis {
+    font-family: var(--font-caps);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    fill: var(--taupe);
+  }
+
+  figcaption {
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 0.8rem;
+  }
+
+  @media (max-width: 880px) {
+    .stage,
+    .control-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* desktop snap mode: the whole chapter must fit one screen */
+  @media (min-width: 1024px) and (hover: hover) {
+    .stage {
+      padding: 1.6rem 2.2rem;
+    }
+
+    .panel-label {
+      margin-bottom: 1rem;
+    }
+
+    .result {
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+    }
+
+    .result-value {
+      font-size: 2.2rem;
+    }
+  }
+</style>

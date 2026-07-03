@@ -1,0 +1,96 @@
+---
+import ChapterHead from "./ChapterHead.astro";
+import { getDict, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getDict(lang).gratis;
+---
+
+<section id="free" class="chapter" data-observe>
+  <div class="wrap narrow">
+    <ChapterHead latin={t.latin} translation={t.translation} headline={t.headline} />
+
+    <div class="vows">
+      {
+        t.vows.map((v, i) => (
+          <article data-reveal style={`--i: ${i + 2}`}>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="donate" data-reveal style="--i: 5">
+      <a
+        class="twint-btn"
+        href="https://go.twint.ch/1/e/tw?tw=acq.H7Pd-0BfRQOFAkvTlTd0YHZ8cRgUlu0QDkAB2iSMkewJtZkFArd3XRV9S9uhzKXJ."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t.donateBtn}
+      >
+        <img src="/assets/twint-button.png" alt={t.donateBtn} height="60" />
+      </a>
+      <p class="muted donate-note">{t.donateNote}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vows {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.6rem, 4vw, 3rem);
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    color: var(--burgundy);
+    margin-bottom: 0.6rem;
+  }
+
+  .vows p {
+    font-size: 1rem;
+  }
+
+  .donate {
+    margin-top: clamp(2rem, 4.5vh, 3rem);
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  /* the PNG IS the button — image only, gentle lift on hover */
+  .twint-btn {
+    display: inline-block;
+    line-height: 0;
+    transition: transform 0.3s var(--ease), filter 0.3s var(--ease);
+  }
+
+  .twint-btn:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 10px 18px rgba(41, 36, 32, 0.25));
+  }
+
+  .twint-btn img {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+
+  .donate-note {
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 720px) {
+    .vows {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
