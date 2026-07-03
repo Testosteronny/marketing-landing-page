@@ -111,9 +111,10 @@ const it: typeof en = {
     month: "Giugno 2026",
     budgetWord: "Budget",
     entries: [
-      { payee: "Stipendio — giugno", cat: "Reddito", amount: "+6'500.00", kind: "in" },
-      { payee: "Affitto", cat: "Abitazione · ricorrente ⟳", amount: "−1'850.00", kind: "out" },
-      { payee: "Migros", cat: "Spesa", amount: "−54.30", kind: "out" },
+      { payee: "Stipendio — giugno", cat: "Reddito", amount: "+6'500.00", kind: "in", rec: true },
+      { payee: "Affitto", cat: "Abitazione", amount: "−1'850.00", kind: "out", rec: true },
+      { payee: "Netflix", cat: "Abbonamento", amount: "−17.90", kind: "out", rec: true },
+      { payee: "Migros", cat: "Spesa", amount: "−54.30", kind: "out", rec: false },
     ],
     holidayTitle: "Vacanze · Lisbona",
     holidayTotal: "CHF 1'560 in totale",
@@ -125,14 +126,7 @@ const it: typeof en = {
     ],
     settleLabel: "Chi deve a chi",
     settles: ["Ben → te · CHF 180", "Lea → te · CHF 210", "Lea → Anna · CHF 60"],
-    subsTitle: "Ricorrente",
-    subs: [
-      { name: "Netflix", detail: "", amount: "−17.90" },
-      { name: "Metà-prezzo", detail: "CHF 190.00 / anno", amount: "≈ −15.85" },
-      { name: "Spotify", detail: "", amount: "−10.25" },
-    ],
-    subsTotal: "CHF 44.00 / mese",
-    foot: "CHF · formato svizzero · categorizzato sul dispositivo",
+    foot: "CHF · formato svizzero · ⟳ = ricorrente",
   },
 
   acta: {

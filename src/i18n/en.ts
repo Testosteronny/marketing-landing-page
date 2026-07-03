@@ -109,9 +109,10 @@ const en = {
     month: "June 2026",
     budgetWord: "Budget",
     entries: [
-      { payee: "Salary — June", cat: "Income", amount: "+6'500.00", kind: "in" },
-      { payee: "Rent", cat: "Housing · recurring ⟳", amount: "−1'850.00", kind: "out" },
-      { payee: "Migros", cat: "Groceries", amount: "−54.30", kind: "out" },
+      { payee: "Salary — June", cat: "Income", amount: "+6'500.00", kind: "in", rec: true },
+      { payee: "Rent", cat: "Housing", amount: "−1'850.00", kind: "out", rec: true },
+      { payee: "Netflix", cat: "Subscription", amount: "−17.90", kind: "out", rec: true },
+      { payee: "Migros", cat: "Groceries", amount: "−54.30", kind: "out", rec: false },
     ],
     holidayTitle: "Holiday · Lisbon",
     holidayTotal: "CHF 1'560 total",
@@ -123,14 +124,7 @@ const en = {
     ],
     settleLabel: "Who owes whom",
     settles: ["Ben → you · CHF 180", "Lea → you · CHF 210", "Lea → Anna · CHF 60"],
-    subsTitle: "Recurring",
-    subs: [
-      { name: "Netflix", detail: "", amount: "−17.90" },
-      { name: "Half-Fare", detail: "CHF 190.00 / year", amount: "≈ −15.85" },
-      { name: "Spotify", detail: "", amount: "−10.25" },
-    ],
-    subsTotal: "CHF 44.00 / month",
-    foot: "CHF · Swiss formatting · categorized on-device",
+    foot: "CHF · Swiss formatting · ⟳ = recurring",
   },
 
   acta: {

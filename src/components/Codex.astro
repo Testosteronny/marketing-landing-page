@@ -21,7 +21,7 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
     <p class="intro" data-reveal style="--i: 2">{t.p1}</p>
 
     <div class="cards">
-      <!-- monthly ledger -->
+      <!-- one ledger: incomes + expenses, recurring marked ⟳ -->
       <div class="card veil" data-reveal style="--i: 3" role="img" aria-label={t.ledgerAria}>
         <header class="card-head">
           <p class="caps card-title">{t.month}</p>
@@ -33,7 +33,10 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
             t.entries.map((e, i) => (
               <li class="row" data-reveal style={`--i: ${i + 4}`}>
                 <span class="payee">
-                  {e.payee}
+                  <span class="payee-line">
+                    {e.payee}
+                    {e.rec && <span class="rec" aria-hidden="true">⟳</span>}
+                  </span>
                   <small class="muted">{e.cat}</small>
                 </span>
                 <span class={`amount num ${e.kind}`}>{e.amount}</span>
@@ -70,27 +73,6 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
           {t.settles.map((s) => <li>{s}</li>)}
         </ul>
       </div>
-
-      <!-- subscriptions -->
-      <div class="card veil" data-reveal style="--i: 5">
-        <header class="card-head">
-          <p class="caps card-title">{t.subsTitle} ⟳</p>
-        </header>
-        <ul class="rows num">
-          {
-            t.subs.map((s) => (
-              <li class="row">
-                <span class="payee">
-                  {s.name}
-                  {s.detail && <small class="muted">{s.detail}</small>}
-                </span>
-                <span class="amount">{s.amount}</span>
-              </li>
-            ))
-          }
-        </ul>
-        <p class="subs-total num">{t.subsTotal}</p>
-      </div>
     </div>
 
     <p class="caps foot muted" data-reveal style="--i: 6">{t.foot}</p>
@@ -106,13 +88,27 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
 
   .cards {
     display: grid;
-    grid-template-columns: 1.1fr 1.1fr 0.8fr;
-    gap: clamp(1.1rem, 2.2vw, 1.8rem);
-    align-items: start;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(1.2rem, 2.4vw, 2rem);
+    align-items: stretch;
   }
 
   .card {
-    padding: 1.3rem 1.3rem 1.1rem;
+    padding: 1.4rem 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .payee-line {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  /* the recurring marker */
+  .rec {
+    color: var(--gold);
+    font-size: 0.85em;
   }
 
   .card-head {
@@ -248,16 +244,6 @@ const maxPaid = Math.max(...t.members.map((m) => Number(m.amount.replace("'", ""
     font-size: 0.95rem;
     color: var(--sage);
     font-weight: 600;
-  }
-
-  /* subscriptions */
-  .subs-total {
-    margin-top: 0.7rem;
-    padding-top: 0.6rem;
-    border-top: 1px solid rgba(216, 200, 174, 0.6);
-    font-weight: 600;
-    color: var(--burgundy);
-    font-size: 0.98rem;
   }
 
   .foot {

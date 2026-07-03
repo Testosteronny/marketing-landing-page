@@ -111,9 +111,10 @@ const de: typeof en = {
     month: "Juni 2026",
     budgetWord: "Budget",
     entries: [
-      { payee: "Lohn — Juni", cat: "Einkommen", amount: "+6'500.00", kind: "in" },
-      { payee: "Miete", cat: "Wohnen · wiederkehrend ⟳", amount: "−1'850.00", kind: "out" },
-      { payee: "Migros", cat: "Lebensmittel", amount: "−54.30", kind: "out" },
+      { payee: "Lohn — Juni", cat: "Einkommen", amount: "+6'500.00", kind: "in", rec: true },
+      { payee: "Miete", cat: "Wohnen", amount: "−1'850.00", kind: "out", rec: true },
+      { payee: "Netflix", cat: "Abo", amount: "−17.90", kind: "out", rec: true },
+      { payee: "Migros", cat: "Lebensmittel", amount: "−54.30", kind: "out", rec: false },
     ],
     holidayTitle: "Ferien · Lissabon",
     holidayTotal: "CHF 1'560 gesamt",
@@ -125,14 +126,7 @@ const de: typeof en = {
     ],
     settleLabel: "Wer schuldet wem",
     settles: ["Ben → Dir · CHF 180", "Lea → Dir · CHF 210", "Lea → Anna · CHF 60"],
-    subsTitle: "Wiederkehrend",
-    subs: [
-      { name: "Netflix", detail: "", amount: "−17.90" },
-      { name: "Halbtax", detail: "CHF 190.00 / Jahr", amount: "≈ −15.85" },
-      { name: "Spotify", detail: "", amount: "−10.25" },
-    ],
-    subsTotal: "CHF 44.00 / Monat",
-    foot: "CHF · Schweizer Format · Kategorisierung auf dem Gerät",
+    foot: "CHF · Schweizer Format · ⟳ = wiederkehrend",
   },
 
   acta: {

@@ -111,9 +111,10 @@ const fr: typeof en = {
     month: "Juin 2026",
     budgetWord: "Budget",
     entries: [
-      { payee: "Salaire — juin", cat: "Revenu", amount: "+6'500.00", kind: "in" },
-      { payee: "Loyer", cat: "Logement · récurrent ⟳", amount: "−1'850.00", kind: "out" },
-      { payee: "Migros", cat: "Courses", amount: "−54.30", kind: "out" },
+      { payee: "Salaire — juin", cat: "Revenu", amount: "+6'500.00", kind: "in", rec: true },
+      { payee: "Loyer", cat: "Logement", amount: "−1'850.00", kind: "out", rec: true },
+      { payee: "Netflix", cat: "Abonnement", amount: "−17.90", kind: "out", rec: true },
+      { payee: "Migros", cat: "Courses", amount: "−54.30", kind: "out", rec: false },
     ],
     holidayTitle: "Vacances · Lisbonne",
     holidayTotal: "CHF 1'560 au total",
@@ -125,14 +126,7 @@ const fr: typeof en = {
     ],
     settleLabel: "Qui doit à qui",
     settles: ["Ben → vous · CHF 180", "Lea → vous · CHF 210", "Lea → Anna · CHF 60"],
-    subsTitle: "Récurrent",
-    subs: [
-      { name: "Netflix", detail: "", amount: "−17.90" },
-      { name: "Demi-tarif", detail: "CHF 190.00 / an", amount: "≈ −15.85" },
-      { name: "Spotify", detail: "", amount: "−10.25" },
-    ],
-    subsTotal: "CHF 44.00 / mois",
-    foot: "CHF · format suisse · catégorisé sur l'appareil",
+    foot: "CHF · format suisse · ⟳ = récurrent",
   },
 
   acta: {
