@@ -118,10 +118,21 @@ try {
 const heroVideo = $("hero-video");
 
 if (heroVideo) {
+  // Pause when the film scrolls out of view; resume where it left off
+  // when the viewer comes back (only if they had it playing).
+  let resumeOnReturn = false;
   const videoWatch = new IntersectionObserver(
     (entries) => {
       for (const e of entries) {
-        if (!e.isIntersecting && !heroVideo.paused) heroVideo.pause();
+        if (!e.isIntersecting) {
+          if (!heroVideo.paused) {
+            heroVideo.pause();
+            resumeOnReturn = true;
+          }
+        } else if (resumeOnReturn) {
+          resumeOnReturn = false;
+          heroVideo.play().catch(() => {});
+        }
       }
     },
     { threshold: 0.25 }

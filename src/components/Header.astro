@@ -12,7 +12,15 @@ const { lang } = Astro.props;
 
 <header class="site-header">
   <a class="brand" href="#top" aria-label="Sueleli">
-    <img src="/assets/logo.svg" alt="Sueleli" width="46" height="46" />
+    <!-- animated lockup: the ring engraves itself, the mark settles,
+         the wordmark appears letter by letter -->
+    <svg class="lockup" viewBox="0 0 236 52" role="img" aria-label="Sueleli">
+      <image class="mark" href="/assets/logo.svg" x="4" y="4" width="44" height="44" />
+      <circle class="ring" cx="26" cy="26" r="23" fill="none" stroke="var(--gold)" stroke-width="1.6" pathLength="100" transform="rotate(-90 26 26)" />
+      <text class="word" x="60" y="34">
+        {"SUELELI".split("").map((ch, i) => <tspan style={`--d: ${i}`}>{ch}</tspan>)}
+      </text>
+    </svg>
   </a>
 
   <nav class="lang caps" aria-label="Language">
@@ -50,14 +58,67 @@ const { lang } = Astro.props;
     pointer-events: auto;
   }
 
-  .brand img {
-    border-radius: 50%;
-    box-shadow: 0 4px 16px rgba(41, 36, 32, 0.18);
+  .lockup {
+    height: 48px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 3px 10px rgba(41, 36, 32, 0.16));
     transition: transform 0.3s var(--ease);
   }
 
-  .brand:hover img {
-    transform: scale(1.06);
+  .brand:hover .lockup {
+    transform: scale(1.04);
+  }
+
+  /* the mark settles in while the gold ring engraves itself around it */
+  .mark {
+    opacity: 0;
+    animation: lockup-fade 0.7s var(--ease) 0.25s forwards;
+  }
+
+  .ring {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: lockup-draw 1.1s var(--ease) 0.1s forwards;
+  }
+
+  .word {
+    font-family: var(--font-caps);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    fill: var(--burgundy);
+  }
+
+  .word tspan {
+    opacity: 0;
+    animation: lockup-fade 0.45s var(--ease) forwards;
+    animation-delay: calc(0.65s + var(--d) * 90ms);
+  }
+
+  @keyframes lockup-fade {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes lockup-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mark,
+    .word tspan {
+      animation: none;
+      opacity: 1;
+    }
+
+    .ring {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
   }
 
   .lang {

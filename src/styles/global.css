@@ -43,13 +43,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Fixed marble canvas — same texture as the app shell */
+/* Fixed marble canvas — same texture as the app shell, softened so
+   text stays comfortably readable over it */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
   background: url("/assets/marble-canvas.webp") center / cover no-repeat;
+  opacity: 0.45;
 }
 
 /* Fine film grain over everything */
